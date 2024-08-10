@@ -1,5 +1,6 @@
 import telebot
 import config
+from main import keep_alive
 
 bot = telebot.TeleBot(config.token)
 from telebot import types
@@ -20,9 +21,8 @@ def callback_inline(call):
         if call.message:
             if call.data == 'test':
                 bot.send_message(call.message.chat.id, text, parse_mode='html')
-            elif call.data == 'bad':
-                bot.send_message(call.message.chat.id, 'Бывает 😢')        
     except Exception as e:
         print(repr(e))            
 #run
+keep_alive()
 bot.polling(none_stop=True)
